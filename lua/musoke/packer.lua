@@ -5,6 +5,20 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
+
+  use 'mfussenegger/nvim-dap'
+  use { "nvim-neotest/nvim-nio" }
+
+  use { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
+  use {
+      'mfussenegger/nvim-dap-python',
+      requires = {
+          { 'mfussenegger/nvim-dap'},
+          { 'rcarriga/nvim-dap-ui' }
+      }
+  }
+
+
   use 'wbthomason/packer.nvim'
 
   use {
@@ -13,7 +27,17 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
+  use {
+      'nvim-lualine/lualine.nvim',
+      requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+  }
 
+  use {
+      'FabijanZulj/blame.nvim',
+  }
+  use {
+      'joerdav/templ.vim',
+    }
   use {
 	  "folke/tokyonight.nvim",
 	  lazy = false,
@@ -41,4 +65,8 @@ return require('packer').startup(function(use)
   use ('mbbill/undotree')
   use ('tpope/vim-fugitive')
   use ('windwp/nvim-ts-autotag')
+  use('neovim/nvim-lspconfig')
+  use('jose-elias-alvarez/null-ls.nvim')
+  use('MunifTanjim/prettier.nvim')
+  use('sbdchd/neoformat')
 end)
